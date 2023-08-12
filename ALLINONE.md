@@ -183,3 +183,108 @@ class  Registration (forms.ModelForms):
 		error_messages = {"name":{'required':"Nam likhana Jaruri he"}}
   widgets = {'name':forms.CharFields}
 ```
+
+# Middelware
+ 
+- darek request par middelware activate thay
+- create middelwere like decorater but in the middel we pased our request
+- add our middelware in setting.py middelware config
+
+function base 
+```py
+def my_middelware(get_response):
+	print("one time execution code")
+	def  my_function(request):
+		print("This is run Before view") 
+		res = get_response(request)
+		print("This is run after view") 
+		 return res
+	return my_function
+```
+- class base
+
+```py
+class MyMiddelware:
+	def __init__(self,get_response):
+        self.get_response = get_response
+
+    def __call__(self,request):
+        print("Call from Middelware ")
+        response = self.get_response
+        print("After View")
+        return response
+#  Add this class in setting.py midelware 
+```
+# Query Set
+
+## Basics Querys for geting data
+```py 
+# Multiple Objects
+Mymodel.objects.all()
+Mymodel.objects.filter(name="jay") #all objects
+Mymodel.objects.order_by("name") #abc
+Mymodel.objects.order_by("-name") #zyx
+Mymodel.objects.values() #all valuesa as dictionary 
+Mymodel.objects.values('name','city') #all values but only name and city 
+Mymodel.objects.values_list('name','city') #specific columsn na j data joyee tab
+Mymodel.objects.select_related('address') # foreignkey data 
+# date
+# using
+
+# Single Objects
+Mymodel.objects.get(id=1) #only 1 object
+Mymodel.objects.first() #only 1 object je pellu rey te / order ma kari ne pellu element mali sake 
+Mymodel.objects.last()
+Mymodel.objects.latest()
+
+```
+## Union,Intersection,Difference
+```py
+obj1 = Mymodel.objects.filter(name="student")
+obj2 = Mymodel.objects.filter(name="teacher")
+
+data1 = obj2.union(obj1,all=True) # banne no data usnion thay ne male
+data2 = obj2.intersection(obj1) # banne same rey te (bane ni id ne badha data same rey tab )
+data3 = obj2.difference(obj1) # obj2-obj1
+```
+## Create Update Delete and More
+
+
+```py
+- Create
+# new field ne add karva mate 
+obj1 = Mymodel.objects.create(name="jay",id=1)
+
+- get_or_create
+# if existe then return else create 
+obj1 = Mymodel.objects.get_or_create(name="jay",id=1)
+
+- update
+# filter and update
+obj1 = Mymodel.objects.filter(id=1).update("name"="salman")
+
+- update_or_create
+# hase alredy to update karse nahi to create karse 
+obj1 = Mymodel.objects.filter(id=1).update("name"="salman")
+
+- bulk_create(listdata)
+- delete(id=1)
+```
+
+# Field Lookups
+- cmd file
+- use for searching and filtering datas
+```py
+name__iexact="jay"
+name__icontains="jay"
+name__in=["Jay","ajay"]
+etc...
+```
+
+# Aggregation In django
+```py
+- avg
+from django.db.models import Avg,Min,Sum,Count
+student.arregate(Avg('marks'))
+
+```
