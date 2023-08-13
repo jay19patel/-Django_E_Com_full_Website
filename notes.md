@@ -214,6 +214,36 @@ class MyClassView(UpdateView):
 
 
 
+# EXMPLE ________________________________________
+from django.views.generic import ListView,DetailView
+from django.views.generic.edit import CreateView
+
+
+class HomePageClass(ListView):
+    model=Category
+    template_name = 'Pages/home.html' 
+    context_object_name ="categories"
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        cat_id = self.request.GET.get('category')
+        search = self.request.GET.get("search")
+        print("search:",search)
+        if cat_id:
+            context['products'] = Product.objects.filter(category_id=cat_id)
+        elif search:
+            context['products'] = Product.objects.filter(Q(title__icontains=search) | Q(description__icontains=search) )
+        else:
+            context['products'] = Product.objects.all()
+
+        return context
+
+
+
+class ProductViewClass(DetailView):
+    model = Product
+    template_name = 'Pages/ProductsView.html'
+    context_object_name = 'details'
+    pk_url_kwarg = 'id'
 
 
 
