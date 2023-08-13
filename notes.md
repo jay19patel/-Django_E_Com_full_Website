@@ -215,6 +215,8 @@ class MyClassView(UpdateView):
 
 
 # EXMPLE ________________________________________
+
+```py
 from django.views.generic import ListView,DetailView
 from django.views.generic.edit import CreateView
 
@@ -246,7 +248,7 @@ class ProductViewClass(DetailView):
     pk_url_kwarg = 'id'
 
 
-
+```
 
 
 
