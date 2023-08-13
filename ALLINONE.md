@@ -288,3 +288,20 @@ from django.db.models import Avg,Min,Sum,Count
 student.arregate(Avg('marks'))
 
 ```
+# Reverse Object Acess  In model
+
+```py
+from django.db import models
+
+class Product(models.Model):
+    name = models.CharField(max_length=100)
+
+class ProductLike(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='likes')
+    liked_by = models.CharField(max_length=100)
+```
+
+```py
+product = Product.objects.get(pk=1)
+product_likes = product.likes.all()
+```
