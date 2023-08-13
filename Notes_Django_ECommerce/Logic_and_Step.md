@@ -11,7 +11,8 @@
 ```
 ## Configure Static and media File in setting and urls.py
 ```py
-# add STATIC ROOT in setting.py 
+# add STATIC ROOT in setting.py
+STATIC_URL = '/static/' # this file in our folder to direct access by django for static files
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')#means data are existe in staticfile file 
 # base_dir atle ke manage.py file chhe te file ma static file ma data che m.
 
