@@ -65,13 +65,7 @@ link :https://console.cloud.google.com/apis/credentials/consent/edit;newAppInter
 
 ## My Data
 ```py
-"client_id":"600677695055-af3m1nc371f7oq9dmd839gs86255oopr.apps.googleusercontent.com"
-"project_id":"jarvish-1bf8c"
-"auth_uri":"https://accounts.google.com/o/oauth2/auth"
-"token_uri":"https://oauth2.googleapis.com/token"
-"auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs"
-"client_secret":"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",
-"redirect_uris":"http://127.0.0.1:8000"
+# Private ----<>
 ```
 
 
