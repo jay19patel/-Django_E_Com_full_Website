@@ -305,3 +305,32 @@ class ProductLike(models.Model):
 product = Product.objects.get(pk=1)
 product_likes = product.likes.all()
 ```
+ # Session and Cookies
+ ## Cookies 
+ - less secur becouse this is readable in chrom
+ - - user for save a page ,category and ,basic history
+ ```py
+set_cookie() #set/create/sent cookies
+
+#ex:Create Formate
+HttpResponse.set_cookie(key="name",value="Jay",max_age=None,expires=None,path='/',domain=None,secure=False,httppnly=False,semesite=None)
+
+#create
+response = render(request,'home.html')
+response.set_cookie('name',"jay"
+#Access
+request.COOKIES.get('name','default')
+request.COOKIE['name']
+
+```
+## Session
+Secure becouse this is encrypt and not show directly
+- use for save username,password,and other information
+```py
+request.session['key']= Value
+request.session.get('key',default)
+del request.session['key'] # delete any key in sesstion
+request.session.clear() # delete session id
+```
+
+
